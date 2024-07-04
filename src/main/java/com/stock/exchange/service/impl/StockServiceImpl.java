@@ -22,6 +22,12 @@ public class StockServiceImpl implements StockService {
     private  final StockExchangeRepository stockExchangeRepository;
     private  final StockExchangeStockMapRepository stockExchangeStockMapRepository;
     @Override
+
+    /**
+     * Creates Stock
+     * @param  stock class as parameter
+     * @return Boolean- true if create operation succeed.
+     */
     public Boolean create(Stock stock) {
 
         stock.setLastUpdate(OffsetDateTime.now());
@@ -29,6 +35,11 @@ public class StockServiceImpl implements StockService {
         return true;
     }
 
+    /**
+     * Updates the price of a stock
+     * @param  stock class as parameter
+     * @return Boolean- true if update operation succeed.
+     */
     @Override
     public Boolean updatePrice(Stock stock) {
 
@@ -45,6 +56,11 @@ public class StockServiceImpl implements StockService {
       return true;
     }
 
+    /**
+     * Deletes stock
+     * @param  stock class as parameter
+     * @return Boolean- true if delete operation succeed.
+     */
     @Override
     public Boolean delete(Stock stock){
 

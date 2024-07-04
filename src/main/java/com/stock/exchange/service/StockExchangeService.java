@@ -5,6 +5,6 @@ import com.stock.exchange.entity.StockExchange;
 
 public interface StockExchangeService {
 
-    Boolean create(StockExchange stockExchange); 
+    Boolean create(StockExchange stockExchange);
 
 }

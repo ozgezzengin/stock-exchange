@@ -12,9 +12,14 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 
    private final StockExchangeRepository stockExchangeRepository;
 
+     /**
+     * Creates StockExchange
+     * @param  stockExchange class as parameter
+     * @return Boolean- true if create operation succeed.
+     */
     @Override
-    public Boolean create(StockExchange exchange) {
-        stockExchangeRepository.save(exchange);
+    public Boolean create(StockExchange stockExchange) {
+        stockExchangeRepository.save(stockExchange);
         return true;
     }
 }

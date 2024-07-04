@@ -22,8 +22,13 @@ public class StockExchangeStockMapServiceImpl implements  StockExchangeStockMapS
 
     private final StockRepository stockRepository;
     private final StockExchangeRepository stockExchangeRepository;
-   private final StockExchangeStockMapRepository stockExchangeStockMapRepository;
+    private final StockExchangeStockMapRepository stockExchangeStockMapRepository;
 
+    /**
+     * Adds the stock to the stock exchange with stock name
+     * @param  stock class to be added to StockChange, stockExchangeName
+     * @return Boolean- true if update operation succeed.
+     */
     @Override
     public Boolean add(Stock stock, String stockExchangeName) {
 
@@ -57,6 +62,11 @@ public class StockExchangeStockMapServiceImpl implements  StockExchangeStockMapS
         return true;
     }
 
+    /**
+     * delete the stock from the stock exchange with stock name
+     * @param  stock class to be deleted from StockChange, stockExchangeName
+     * @return Boolean- true if update operation succeed.
+     */
     @Override
     public Boolean delete(Stock stock, String stockExchangeName) {
 
@@ -87,7 +97,11 @@ public class StockExchangeStockMapServiceImpl implements  StockExchangeStockMapS
         stockExchangeRepository.save(currentStockExchange);
         return  true;
     }
-
+    /**
+     * List the related stocks from the stock exchange with stock name
+     * @param  stockExchangeName
+     * @return StockExchange data with Stock details
+     */
     @Override
     public StockExchangeDetailDto list(String stockExchangeName) {
 
