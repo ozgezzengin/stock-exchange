@@ -6,10 +6,7 @@ import com.stock.exchange.entity.StockExchange;
 import com.stock.exchange.service.StockExchangeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
@@ -24,6 +21,13 @@ public class StockExchangeCreateController {
     ResponseEntity<Boolean> create( @RequestBody StockExchange stockExchange) {
 
         stockExchangeService.create(stockExchange);
+        return ResponseEntity.ok(true);
+    }
+
+    @DeleteMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE, value = "{name}")
+    ResponseEntity<Boolean> delete(@PathVariable String name) {
+
+        stockExchangeService.delete(name);
         return ResponseEntity.ok(true);
     }
 }

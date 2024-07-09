@@ -15,6 +15,7 @@ public class StockExchange {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @Column(unique=true)
     private String name;
 
     private String description;
