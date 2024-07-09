@@ -52,12 +52,7 @@ public class StockExchangeStockMapServiceImpl implements  StockExchangeStockMapS
         stockExchangeStockMapRepository.save(stockExchangeStockMap);
 
         //Set LiveInMarket true if current count > 5 after insert operation
-        Long stockExchangeId = currentStockExchange.getId();
-        Long stockCount = stockExchangeStockMapRepository.countByStockExchangeId(stockExchangeId);
-        if(stockCount >= 5){
-            currentStockExchange.setLiveInMarket(true);
-        }
-        stockExchangeRepository.save(currentStockExchange);
+        changeLiveInMarketStatus(currentStockExchange);
 
         return true;
     }
@@ -89,12 +84,7 @@ public class StockExchangeStockMapServiceImpl implements  StockExchangeStockMapS
         stockExchangeStockMapRepository.deleteAll(result);
 
         //Set LiveInMarket false if current count < 5 after delete operation
-        Long stockExchangeId = currentStockExchange.getId();
-        Long stockCount = stockExchangeStockMapRepository.countByStockExchangeId(stockExchangeId);
-        if(stockCount < 5){
-           currentStockExchange.setLiveInMarket(false);
-        }
-        stockExchangeRepository.save(currentStockExchange);
+        changeLiveInMarketStatus(currentStockExchange);
         return  true;
     }
     /**
@@ -118,5 +108,18 @@ public class StockExchangeStockMapServiceImpl implements  StockExchangeStockMapS
 
         return stockExchangeDetailDto;
 
+    }
+
+    private void changeLiveInMarketStatus(StockExchange stockExchange){
+
+        Long stockCount = stockExchangeStockMapRepository.countByStockExchangeId(stockExchange.getId());
+        if(stockCount < 5){
+            stockExchange.setLiveInMarket(false);
+        }
+
+        else{
+            stockExchange.setLiveInMarket(true);
+        }
+        stockExchangeRepository.save((stockExchange));
     }
 }
